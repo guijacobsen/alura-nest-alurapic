@@ -9,6 +9,8 @@ import {
   Post,
   Res,
 } from '@nestjs/common';
+import { NestResponse } from 'src/core/http/nest-response';
+import { NestResponseBuilder } from 'src/core/http/nest-response-builder';
 import { Usuario } from './usuario.entity';
 import { UsuarioService } from './usuario.service';
 
@@ -17,13 +19,16 @@ export class UsuarioController {
   constructor(private usuarioService: UsuarioService) {}
 
   @Post('/')
-  public create(@Body() usuario: Usuario, @Res() res) {
+  public create(@Body() usuario: Usuario): NestResponse {
     const usuarioCriado = this.usuarioService.create(usuario);
 
-    res
+    return new NestResponseBuilder()
       .status(HttpStatus.CREATED)
-      .location(`/users/${usuarioCriado.id}`)
-      .json(usuarioCriado);
+      .headers({
+        Location: `/users/${usuarioCriado.id}`,
+      })
+      .body(usuarioCriado)
+      .build();
   }
 
   @Get('/')
