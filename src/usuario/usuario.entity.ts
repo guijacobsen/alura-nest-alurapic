@@ -3,7 +3,8 @@ import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
 import { IsEmailUnique } from './isEmailUnique.validator';
 
 export class Usuario {
-  id: number;
+  @Expose({ name: 'id' })
+  id: string;
 
   @Expose({ name: 'name' })
   @IsNotEmpty({ message: 'Nome obrigatório' })
