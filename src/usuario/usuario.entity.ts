@@ -8,11 +8,21 @@ export class Usuario {
   nome: string;
 
   @IsNotEmpty({ message: 'E-mail obrigatório' })
+  @IsString()
   @IsEmail({}, { message: 'E-mail inválido' })
   email: string;
 
   @IsNotEmpty({ message: 'Senha obrigatória' })
-  @Matches(/[A-Z][a-z][0-9]/)
+  @IsString()
+  @Matches(/[a-z]/, {
+    message: 'Senha deve conter letra minuscula, maiuscula e numero',
+  })
+  @Matches(/[A-Z]/, {
+    message: 'Senha deve conter letra minuscula, maiuscula e numero',
+  })
+  @Matches(/[0-9]/, {
+    message: 'Senha deve conter letra minuscula, maiuscula e numero',
+  })
   senha: string;
 
   dataEntrada: Date;
