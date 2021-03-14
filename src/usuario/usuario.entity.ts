@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
+import { IsEmailUnique } from './isEmailUnique.validator';
 
 export class Usuario {
   id: number;
@@ -10,6 +11,7 @@ export class Usuario {
   @IsNotEmpty({ message: 'E-mail obrigatório' })
   @IsString()
   @IsEmail({}, { message: 'E-mail inválido' })
+  @IsEmailUnique({ message: 'E-mail deve ser único' })
   email: string;
 
   @IsNotEmpty({ message: 'Senha obrigatória' })
