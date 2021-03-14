@@ -6,12 +6,15 @@ export class UsuarioService {
   public usuarios: Usuario[] = [];
 
   public create(usuario: Usuario): Usuario {
-    const usuarioCriado = {
-      ...usuario,
-      id: Date.now().toString(),
-    };
-    this.usuarios.push(usuarioCriado);
-    return usuarioCriado;
+    // const usuarioCriado = {
+    //   ...usuario,
+    //   id: Date.now().toString(),
+    // };
+    // this.usuarios.push(usuarioCriado);
+    // return usuarioCriado;
+
+    this.usuarios.push(usuario);
+    return usuario;
   }
   public getAll(): Usuario[] {
     return this.usuarios;
