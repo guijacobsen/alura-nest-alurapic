@@ -3,7 +3,7 @@ import { UsuarioService } from './usuario.service';
 
 @Controller('users')
 export class UsuarioController {
-  private usuarioService = new UsuarioService();
+  constructor(private usuarioService: UsuarioService) {}
 
   @Post('/')
   public create(@Body() usuario) {
